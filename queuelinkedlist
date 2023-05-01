@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include<stdlib.h>
+struct node{
+    int data;
+    struct node* next;
+}*rear=NULL,*front=NULL;
+typedef struct node* nn;
+nn a,temp;
+int x;
+void enq(){
+    printf("Enter Data: ");
+    scanf("%d",&x);
+    a=malloc(sizeof(struct node));
+    a->data=x;
+    a->next=NULL;
+    if(front==0 && rear==0){
+        front=rear=a;
+    }
+    else{
+        rear->next=a;
+        rear=a;
+    }
+    main();
+}
+void deq(){
+    temp=front;
+    if(front==0 && rear==0){
+        printf("\nUnderflow");
+    }
+    else{
+        front=front->next;
+        free(temp);
+    }
+    main();
+}
+void print(){
+    if(front==0){
+        printf("\nQueue is Empty");
+        //main();
+    }
+    else{
+        temp=front;
+        while(temp!=NULL){
+            printf("%d\t",temp->data);
+            temp=temp->next;
+        }
+        main();
+    }
+}
+int main()
+{
+    int choice;
+    printf("\n1.EnQ");
+    printf("\n2.DeQ");
+    printf("\n3.PRINT");
+    printf("\n4.EXIT");
+    printf("\nEnter your choice: ");
+    scanf("%d",&choice);
+    switch(choice){
+        case 1:
+        enq();
+        break;
+        case 2:
+        deq();
+        break;
+        case 3:
+        print();
+        break;
+        case 4:
+        exit(0);
+        default:
+        printf("\nEnter correct choice");
+        main();
+    }
+    return 0;
+}
